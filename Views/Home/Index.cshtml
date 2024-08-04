@@ -7,11 +7,13 @@
     <p class="display-6">Сегодняшняя дата: @ViewData["Date"]</p>
     <br />
     <h4 class="">Сегодняшние именинники:</h4>
+    <br />
     @if ((ViewData["Todays"] as List<PersonDTO>)?.Count > 0)
         {
     <table>
         <thead>
             <tr>
+                <th>Фото</th>
                 <th>Имя</th>
                 <th>Дата</th>
             </tr>
@@ -36,11 +38,13 @@
     }
     <br />
     <h4 class="">Ближайшие именинники:</h4>
+    <br />
     @if ((ViewData["Nearest"] as List<PersonDTO>)?.Count > 0)
     {
     <table>
         <thead>
             <tr>
+                <th>Фото</th>
                 <th>Имя</th>
                 <th>Дата</th>
             </tr>

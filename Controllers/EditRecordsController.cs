@@ -2,6 +2,7 @@
 using BirthdayCalendarMVC.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BirthdayCalendarMVC.Controllers
 {
@@ -58,7 +59,7 @@ namespace BirthdayCalendarMVC.Controllers
                     if (personDTO.ImageUrl == null)
                         personDTO.ImageUrl = oldPerson.ImageUrl;
 
-                    _mongoService.UpdateAsync(BsonId, personDTO).Wait();
+                    _mongoService.UpdateAsync(BsonId, personDTO);
                     return View("Success");
 
                 }
@@ -72,11 +73,11 @@ namespace BirthdayCalendarMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(string bsonID)
+        public async Task<IActionResult> Delete(string bsonID)
         {
             try
             {
-                _mongoService.RemoveAsync(bsonID).Wait();
+                await _mongoService.RemoveAsync(bsonID);
             }
             catch
             {
@@ -87,13 +88,13 @@ namespace BirthdayCalendarMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteMultiple(List<string> deleteMultiple)
+        public async Task<IActionResult> DeleteMultiple(List<string> deleteMultiple)
         {
             try
             {
                 foreach (string bsonID in deleteMultiple)
                 {
-                    _mongoService.RemoveAsync(bsonID);
+                    await _mongoService.RemoveAsync(bsonID);
                 }
             }
             catch

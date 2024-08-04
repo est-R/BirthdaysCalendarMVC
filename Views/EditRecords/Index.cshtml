@@ -11,7 +11,8 @@
     <table>
         <thead>
             <tr>
-                    <th><button type="submit" class="btn btn-danger btn-deleteMultiple">Удалить несколько</button></th>
+                <th><button type="submit" class="btn btn-danger btn-deleteMultiple">Удалить несколько</button></th>
+                <th>Фото</th>
                 <th>Имя</th>
                 <th>Дата</th>
             </tr>
@@ -21,13 +22,13 @@
             {
                 <tr>
                     <td><input type="checkbox" name="deleteMultiple" value="@person.BsonId" /></td>
+                    <td><img class="img-thumbnail" src="@Url.Content(ViewData["Host"] + person.ImageUrl)" alt="Фото @person.Name" /></td>
                     <td>@person.Name</td>
                     <td>@person.Date.ToString("dd-MM-yyyy")</td>
-                        <td><a asp-action="Edit" asp-controller="EditRecords" asp-route-bsonId="@person.BsonId" class="btn btn-secondary">&#9998;</a></td>
+                    <td><a asp-action="Edit" asp-controller="EditRecords" asp-route-bsonId="@person.BsonId" class="btn btn-secondary">&#9998;</a></td>
                     <td>
                     <form asp-action="Delete">
-                        <input type="hidden" name="bsonID" value="@person.BsonId" />
-                            <button type="submit" class="btn btn-danger">&#128465;</button>
+                        <button asp-action="Delete" asp-controller="EditRecords" asp-route-bsonId="@person.BsonId" class="btn btn-danger">&#128465;</button>
                     </form>
                     </td>
                 </tr>

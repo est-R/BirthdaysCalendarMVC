@@ -27,17 +27,19 @@ img {
 
 table {
     margin-inline: auto;
+    width: 66vw;
 }
 
 td {
-    min-width: 14vw;
+    max-width: 100px;
+    min-height: 100px;
 }
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.btn-deleteMultiple {
-    margin-left: 20%;
-    display: block;
+container {
+    display: flex;
+    justify-content: center;
 }
