@@ -4,6 +4,7 @@ using MongoDB.Bson;
 
 namespace BirthdayCalendarMVC.Models
 {
+    [BsonIgnoreExtraElements]
     public class PersonDTO
     {
         private string _name = "Имя не задано";
