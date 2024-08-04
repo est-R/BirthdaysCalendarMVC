@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Поздравлятор</h1>
+    <p class="display-6">Сегодняшняя дата: @ViewData["Date"]</p>
+    <br />
+    <h4 class="">Сегодняшние именинники:</h4>
+    @if ((ViewData["Todays"] as List<PersonDTO>)?.Count > 0)
+        {
+    <table>
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Дата</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in ViewData["Todays"] as List<PersonDTO>)
+            {
+                <tr>
+                    <td><img class="img-thumbnail" src="@Url.Content(ViewData["Host"] + person.ImageUrl)" alt="Фото @person.Name" /></td>
+                    <td>@person.Name</td>
+                    <td>@person.Date.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+        }
+    else
+    {
+        <div class="empty-list">
+            Сегодня именинников нет.
+        </div>
+    }
+    <br />
+    <h4 class="">Ближайшие именинники:</h4>
+    @if ((ViewData["Nearest"] as List<PersonDTO>)?.Count > 0)
+    {
+    <table>
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Дата</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in ViewData["Nearest"] as List<PersonDTO>)
+            {
+                <tr>
+                    <td><img class="img-thumbnail" src="@Url.Content(ViewData["Host"] + person.ImageUrl)" alt="Фото @person.Name" /></td>
+                    <td>@person.Name</td>
+                    <td>@person.Date.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+    else
+        {
+            <div class="empty-list">
+                Ближайших дней рождения нет.
+            </div>
+        }
+</div>

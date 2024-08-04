@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Редактировать/Удалить";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Поздравлятор</h1>
+    <p class="display-6">Сегодняшняя дата: @ViewData["Date"]</p>
+    <br />
+<form method="post" action="@Url.Action("DeleteMultiple", "EditRecords")">
+    
+    <table>
+        <thead>
+            <tr>
+                    <th><button type="submit" class="btn btn-danger btn-deleteMultiple">Удалить несколько</button></th>
+                <th>Имя</th>
+                <th>Дата</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in ViewData["AllRecords"] as List<PersonDTO>)
+            {
+                <tr>
+                    <td><input type="checkbox" name="deleteMultiple" value="@person.BsonId" /></td>
+                    <td>@person.Name</td>
+                    <td>@person.Date.ToString("dd-MM-yyyy")</td>
+                        <td><a asp-action="Edit" asp-controller="EditRecords" asp-route-bsonId="@person.BsonId" class="btn btn-secondary">&#9998;</a></td>
+                    <td>
+                    <form asp-action="Delete">
+                        <input type="hidden" name="bsonID" value="@person.BsonId" />
+                            <button type="submit" class="btn btn-danger">&#128465;</button>
+                    </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+</div>

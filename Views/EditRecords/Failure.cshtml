@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Failure";
+}
+
+<h1>Ошибка!</h1>
+<div>
+    <form method="post">
+        <button type="submit" formaction="@Url.Action("Index", "EditRecords")" class="btn btn-primary">Попробовать снова</button>
+    </form>
+</div>
